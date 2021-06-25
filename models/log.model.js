@@ -11,6 +11,7 @@ var log = new Schema({
   action: { type: String },
   timeStamp: { type: String },
   type: { type: String },
+  scene: { type: String },
 });
 
 var logmodel = mongoose.model("log", log);

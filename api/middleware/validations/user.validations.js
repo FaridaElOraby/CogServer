@@ -21,11 +21,11 @@ const validateAddUser = (req, res, next) => {
     username: Joi.string().required(),
     password: Joi.string().required(),
     birthYear: Joi.string().required(),
-    educationaLevel: Joi.string().required(),
+    educationalLevel: Joi.string().required(),
     mentalIllness: Joi.string(),
     notes: Joi.string(),
     medication: Joi.string(),
-    caffiene: Joi.string().required(),
+    caffiene: Joi.number().required(),
   });
   const { error, value } = schema.validate(req.body);
   if (error) {

@@ -3,14 +3,14 @@ const cors = require("cors");
 const allRoutes = require("express-list-endpoints");
 const { connectDB } = require("./config/dbConfig");
 const user = require("./api/routers/user.router");
-const simpleDetection = require("./api/routers/user.router");
-const reyAuditory = require("./api/routers/user.router");
-const patternMeta = require("./api/routers/user.router");
-const patternEvaluation = require("./api/routers/user.router");
-const patternAnswer = require("./api/routers/user.router");
-const log = require("./api/routers/user.router");
-const lexical = require("./api/routers/user.router");
-const infoSamlping = require("./api/routers/user.router");
+const simpleDetection = require("./api/routers/simpleDetection.router");
+const reyAuditory = require("./api/routers/reyAuditory.router");
+const patternMeta = require("./api/routers/patternMeta.router");
+const patternEvaluation = require("./api/routers/patternEvaluation.router");
+const patternAnswer = require("./api/routers/patternAnswer.router");
+const log = require("./api/routers/log.router");
+const lexical = require("./api/routers/lexical.router");
+const infoSampling = require("./api/routers/infoSampling.router");
 
 const app = express();
 app.use(express.json());
@@ -43,7 +43,7 @@ app.use("/patternEvaluation", patternEvaluation);
 app.use("/patternAnswer", patternAnswer);
 app.use("/log", log);
 app.use("/lexical", lexical);
-app.use("/infoSamlping", infoSamlping);
+app.use("/infoSampling", infoSampling);
 
 app.use((req, res) => {
   res.status(404).send({ err: "No such url" });

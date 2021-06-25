@@ -1,7 +1,7 @@
 const usermodel = require("../../models/user.model");
 const infoSamplingmodel = require("../../models/infoSampling.model");
 
-const { entityNotFound } = require("../constants/statusCodes");
+const { success, entityNotFound } = require("../constants/statusCodes");
 
 const addRecord = async (req, res) => {
   try {

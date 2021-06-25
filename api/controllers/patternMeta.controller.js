@@ -1,7 +1,7 @@
 const usermodel = require("../../models/user.model");
 const patternMetamodel = require("../../models/patternMeta.model");
 
-const { entityNotFound } = require("../constants/statusCodes");
+const { success, entityNotFound } = require("../constants/statusCodes");
 
 const addRecord = async (req, res) => {
   try {

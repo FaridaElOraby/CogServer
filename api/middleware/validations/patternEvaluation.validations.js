@@ -1,12 +1,12 @@
 const Joi = require("joi");
 const { validation } = require("../../constants/statusCodes");
 
-const valdiateAddRecord = (req, res, next) => {
+const validateAddRecord = (req, res, next) => {
   const schema = Joi.object({
     username: Joi.string().required(),
+    chosenPattern: Joi.number().required(),
     round: Joi.number().required(),
-    timeStamp: Joi.string().required(),
-    word: Joi.string().required(),
+    evaluation: Joi.string().required(),
   });
   const { error, value } = schema.validate(req.body);
   if (error) {
@@ -19,5 +19,5 @@ const valdiateAddRecord = (req, res, next) => {
 };
 
 module.exports = {
-  valdiateAddRecord,
+  validateAddRecord,
 };

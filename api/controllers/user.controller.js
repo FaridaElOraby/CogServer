@@ -8,6 +8,7 @@ const { signingKey, salt } = require("../../config/keys");
 const bcrypt = require("bcryptjs");
 const { gender } = require("../constants/enums");
 const {
+  success,
   usershouldbeunique,
   entityNotFound,
   wrongCredentials,
@@ -16,7 +17,9 @@ const {
 const addUser = async (req, res) => {
   try {
     const user = req.body;
-    const userFound = await usermodel.findOne({ username: user.username });
+    const username = user.username.toLowerCase();
+    user.username = username;
+    const userFound = await usermodel.findOne({ username: username });
     if (userFound) {
       return res.json({
         statusCode: usershouldbeunique,
@@ -24,18 +27,19 @@ const addUser = async (req, res) => {
       });
     }
     const saltKey = bcrypt.genSaltSync(salt);
-    const hashed_pass = bcrypt.hashSync("123456", saltKey);
+    const hashed_pass = bcrypt.hashSync(user.password, saltKey);
     user.password = hashed_pass;
     user.Phase = "initial testing";
     const newUser = await usermodel.create(user);
 
     const payLoad = {
       id: user._id,
-      username: user.name,
+      username: user.username,
     };
 
     const token = jwt.sign(payLoad, signingKey);
 
+    newUser.password = "";
     return res.json({ statusCode: success, user: newUser, token: token });
   } catch (exception) {
     console.log(exception);
@@ -49,14 +53,16 @@ const addUser = async (req, res) => {
 const logIn = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await usermodel.findOne({ username });
-    if (!staff) {
+    const username2 = username.toLowerCase();
+    const user = await usermodel.findOne({ username: username2 });
+    if (!user) {
       return res.json({
         error: "Username not found",
         statusCode: entityNotFound,
       });
     }
     const match = bcrypt.compareSync(password, user.password);
+
     if (!match) {
       return res.json({
         error: "wrong credentials",
@@ -65,7 +71,7 @@ const logIn = async (req, res) => {
     }
     const payLoad = {
       id: user._id,
-      username: user.name,
+      username: user.username,
     };
 
     const token = jwt.sign(payLoad, signingKey);

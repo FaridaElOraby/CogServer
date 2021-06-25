@@ -13,9 +13,6 @@ const connectDB = async () => {
     })
     .then(async () => {
       console.log("MongoDB Connected…");
-
-      const saltKey = bcrypt.genSaltSync(salt);
-      const hashed_pass = bcrypt.hashSync("12345678", saltKey);
     })
     .catch((err) => console.log(err));
 };
