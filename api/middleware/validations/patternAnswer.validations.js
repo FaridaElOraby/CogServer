@@ -4,7 +4,7 @@ const { validation } = require("../../constants/statusCodes");
 const validateAddRecord = (req, res, next) => {
   const schema = Joi.object({
     username: Joi.string().required(),
-    modelAnswer: Joi.array().required(),
+    modelAnswer: Joi.string().required(),
   });
   const { error, value } = schema.validate(req.body);
   if (error) {

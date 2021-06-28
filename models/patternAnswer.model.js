@@ -7,7 +7,7 @@ mongoose.set("useCreateIndex", true);
 var Schema = mongoose.Schema;
 
 var patternAnswer = new Schema({
-  modelAnswer: { type: [Number] },
+  modelAnswer: { type: String },
   username: { type: String },
 });
 

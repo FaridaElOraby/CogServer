@@ -7,6 +7,7 @@ const validateAddRecord = (req, res, next) => {
     chosenPattern: Joi.number().required(),
     round: Joi.number().required(),
     evaluation: Joi.string().required(),
+    timePassed: Joi.string().required(),
   });
   const { error, value } = schema.validate(req.body);
   if (error) {

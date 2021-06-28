@@ -2,6 +2,7 @@ const Joi = require("joi");
 const { validation } = require("../../constants/statusCodes");
 
 const validateAddRecord = (req, res, next) => {
+  console.log(req);
   const schema = Joi.object({
     username: Joi.string().required(),
     round: Joi.number().required(),

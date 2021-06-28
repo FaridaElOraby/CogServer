@@ -6,5 +6,5 @@ const {
   validateAddRecord,
 } = require("../middleware/validations/simpleDetection.validations");
 
-router.post("/addRecord", validateAddRecord, verifyToken, addRecord);
+router.post("/addRecord", validateAddRecord, addRecord);
 module.exports = router;

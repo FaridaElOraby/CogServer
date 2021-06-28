@@ -11,6 +11,7 @@ var patternEvaluation = new Schema({
   chosenPattern: { type: Number },
   evaluation: { type: String },
   round: { type: Number },
+  timePassed: { type: String },
 });
 
 var patternEvaluationmodel = mongoose.model(
