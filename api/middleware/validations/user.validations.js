@@ -17,7 +17,7 @@ const valdiateLogIn = (req, res, next) => {
 };
 const validateAddUser = (req, res, next) => {
   const schema = Joi.object({
-    gender: Joi.string().valid(gender.MALE, gender.FEMALE),
+    gender: Joi.string().valid(gender.MALE, gender.FEMALE, gender.OTHER),
     username: Joi.string().required(),
     password: Joi.string().required(),
     birthYear: Joi.string().required(),
