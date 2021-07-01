@@ -25,7 +25,7 @@ const validateAddUser = (req, res, next) => {
     mentalIllness: Joi.string(),
     notes: Joi.string(),
     medication: Joi.string(),
-    caffiene: Joi.number().required(),
+    caffiene: Joi.number(),
   });
   const { error, value } = schema.validate(req.body);
   if (error) {

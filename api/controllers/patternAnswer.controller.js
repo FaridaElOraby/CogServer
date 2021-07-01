@@ -10,7 +10,7 @@ const addRecord = async (req, res) => {
     if (!userFound) {
       return res.json({
         statusCode: entityNotFound,
-        error: "Username does not exist",
+        error: `Username does not exist ${data.username}`,
       });
     }
     const newRecord = await patternAnswermodel.create(data);

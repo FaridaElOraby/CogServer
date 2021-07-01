@@ -14,8 +14,9 @@ const verifyToken = (req, res, next) => {
     signingKey,
     async (err, authorizedData) => {
       if (!err) {
-        const userFound = await usermodel.findById(authorizedData.id);
-
+        const userFound = await usermodel.findOne({
+          username: authorizedData.username,
+        });
         const header = req.headers.authorization;
         const token = header;
         req.data = authorizedData;
@@ -24,7 +25,7 @@ const verifyToken = (req, res, next) => {
         if (!userFound) {
           return res.json({
             statusCode: entityNotFound,
-            error: "Username does not exist",
+            error: `Username does not exist`,
           });
         }
         if (userFound.username !== req.data.username) {
