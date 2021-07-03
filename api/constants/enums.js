@@ -1,7 +1,7 @@
 const gender = {
   MALE: "male",
   FEMALE: "female",
-  OTHER: "perfer not to disclose",
+  OTHER: "none",
 };
 
 module.exports = {

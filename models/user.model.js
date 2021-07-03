@@ -10,18 +10,14 @@ var Schema = mongoose.Schema;
 var user = new Schema({
   username: { type: String },
   password: { type: String },
-  gender: {
-    type: String,
-    enum: [gender.MALE, gender.FEMALE],
-  },
-  id: { type: String },
+  gender: { type: String },
   phase: { type: String },
-  birthyear: { type: Number },
+  birthYear: { type: Number },
   educationalLevel: { type: String },
   mentalIllness: { type: String },
   notes: { type: String },
-  medication: { type: String },
-  caffeine: { type: Number },
+  caffiene: { type: Number },
+  valid: { type: String },
 });
 
 var usermodel = mongoose.model("user", user);

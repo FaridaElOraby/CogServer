@@ -6,7 +6,6 @@ const fs = require("fs");
 const { signingKey, salt } = require("../../config/keys");
 
 const bcrypt = require("bcryptjs");
-const { gender } = require("../constants/enums");
 const {
   success,
   usershouldbeunique,
@@ -30,7 +29,19 @@ const addUser = async (req, res) => {
     const hashed_pass = bcrypt.hashSync(user.password, saltKey);
     user.password = hashed_pass;
     user.Phase = "initial testing";
-    const newUser = await usermodel.create(user);
+    const dataUser = {
+      username: username,
+      password: hashed_pass,
+      gender: user.gender,
+      phase: "data collection",
+      birthYear: user.birthYear,
+      educationalLevel: user.educationalLevel,
+      mentalIllness: user.mentalIllness,
+      notes: user.notes,
+      caffiene: user.caffiene,
+      valid: "false",
+    };
+    const newUser = await usermodel.create(dataUser);
 
     const payLoad = {
       id: user._id,
@@ -90,7 +101,35 @@ const logIn = async (req, res) => {
   }
 };
 
+const validateUser = async (req, res) => {
+  try {
+    const { username } = req.body;
+    const username2 = username.toLowerCase();
+    const user = await usermodel.findOne({ username: username2 });
+    if (!user) {
+      return res.json({
+        error: "Username not found",
+        statusCode: entityNotFound,
+      });
+    }
+    const newUser = await usermodel.findOneAndUpdate(
+      { username: username2 },
+      { valid: "true" }
+    );
+    return res.json({
+      statusCode: success,
+    });
+  } catch (exception) {
+    console.log(exception);
+    return res.json({
+      error: "Something went wrong",
+      statusCode: unknown,
+    });
+  }
+};
+
 module.exports = {
   addUser,
   logIn,
+  validateUser,
 };
