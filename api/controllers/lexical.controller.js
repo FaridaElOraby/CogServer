@@ -1,7 +1,11 @@
 const usermodel = require("../../models/user.model");
 const lexicalmodel = require("../../models/lexical.model");
 
-const { success, entityNotFound } = require("../constants/statusCodes");
+const {
+  success,
+  entityNotFound,
+  unknown,
+} = require("../constants/statusCodes");
 
 const addRecord = async (req, res) => {
   try {

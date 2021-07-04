@@ -8,6 +8,7 @@ const { signingKey, salt } = require("../../config/keys");
 const bcrypt = require("bcryptjs");
 const {
   success,
+  unknown,
   usershouldbeunique,
   entityNotFound,
   wrongCredentials,
