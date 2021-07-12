@@ -11,6 +11,7 @@ const patternAnswer = require("./api/routers/patternAnswer.router");
 const log = require("./api/routers/log.router");
 const lexical = require("./api/routers/lexical.router");
 const infoSampling = require("./api/routers/infoSampling.router");
+const admin = require("./api/routers/admin.router");
 
 const app = express();
 app.use(express.json());
@@ -44,6 +45,7 @@ app.use("/patternAnswer", patternAnswer);
 app.use("/log", log);
 app.use("/lexical", lexical);
 app.use("/infoSampling", infoSampling);
+app.use("/admin", admin);
 
 app.use((req, res) => {
   res.status(404).send({ err: "No such url" });

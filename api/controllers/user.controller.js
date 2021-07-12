@@ -34,7 +34,7 @@ const addUser = async (req, res) => {
       username: username,
       password: hashed_pass,
       gender: user.gender,
-      phase: "data collection",
+      phase: "post data collection",
       birthYear: user.birthYear,
       educationalLevel: user.educationalLevel,
       mentalIllness: user.mentalIllness,
